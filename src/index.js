@@ -1,17 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { LoginPage } from './pages/LoginPage';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import { Homepage } from './pages/Homepage';
+import { Header } from './components/Header';
+import PrivateRoute from './utils/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
+
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+  
+
+  
+  <BrowserRouter>
+  <AuthProvider>
+  <Header/>
+    <Routes>
+      <Route path="/" element={<App />}  />
+      <Route path="login/" element={<LoginPage />} />
+
+        {/* <Route index element={<Homepage />} />
+
+        <Route path="teams" element={<LoginPage />}>
+          <Route path=":teamId" element={<Team />} />
+          <Route path="new" element={<NewTeamForm />} />
+          <Route index element={<LeagueStandings />} />
+        </Route>
+
+      </Route> */}
+    </Routes>
+    </AuthProvider>
+  </BrowserRouter>
+  
+ ,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
